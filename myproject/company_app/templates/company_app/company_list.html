@@ -1,0 +1,91 @@
+{% extends "company_app/base.html" %}
+
+{% block title %}Company List{% endblock %}
+
+{% block content %}
+<h2>Company List</h2>
+
+<style>
+    /* Style the link */
+    a {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background: #ff6a95;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+
+    a:hover {
+        background: #8e2de2;
+    }
+
+    /* Style table */
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    th {
+        background: linear-gradient(135deg, #8e2de2, #ff6a95);
+        color: #fff;
+        font-size: 16px;
+    }
+
+    tr:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.02);
+        transition: 0.2s ease;
+    }
+
+    td {
+        color: #fff;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    hr {
+        border: 1px solid #fff;
+        width: 80%;
+        margin: 20px auto;
+    }
+</style>
+
+<a href="{% url 'company_create' %}">Add Company</a>
+<hr>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Industry</th>
+    </tr>
+    {% for company in companies %}
+    <tr>
+        <td>{{ company.name }}</td>
+        <td>{{ company.location }}</td>
+        <td>{{ company.industry }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No companies found</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

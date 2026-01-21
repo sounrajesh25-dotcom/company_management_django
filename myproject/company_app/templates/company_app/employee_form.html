@@ -1,0 +1,63 @@
+{% extends "company_app/base.html" %}
+
+{% block title %}Add Employee{% endblock %}
+
+{% block content %}
+<h2>Add Employee</h2>
+
+<style>
+    /* Style form container */
+    form {
+        width: 50%;
+        margin: 20px auto;
+        padding: 30px;
+        background: linear-gradient(135deg, #8e2de2, #ff6a95);
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        color: #fff;
+    }
+
+    /* Style form fields */
+    form input, form select, form textarea {
+        width: 100%;
+        padding: 10px 15px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        font-size: 16px;
+        color: #333;
+    }
+
+    /* Style submit button */
+    form button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background-color: #ff6a95;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    form button:hover {
+        background-color: #8e2de2;
+        transform: translateY(-2px);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+</style>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Employee</button>
+</form>
+{% endblock %}

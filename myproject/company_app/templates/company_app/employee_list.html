@@ -1,0 +1,95 @@
+{% extends "company_app/base.html" %}
+
+{% block title %}Employee List{% endblock %}
+
+{% block content %}
+<h2>Employee List</h2>
+
+<style>
+    /* Style the "Add Employee" button */
+    a {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        background: #ff6a95;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+
+    a:hover {
+        background: #8e2de2;
+    }
+
+    /* Style table */
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    th {
+        background: linear-gradient(135deg, #8e2de2, #ff6a95);
+        color: #fff;
+        font-size: 16px;
+    }
+
+    td {
+        color: #fff;
+    }
+
+    tr:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: scale(1.02);
+        transition: 0.2s ease;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    hr {
+        border: 1px solid #fff;
+        width: 90%;
+        margin: 20px auto;
+    }
+</style>
+
+<a href="{% url 'employee_create' %}">Add Employee</a>
+<hr>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Salary</th>
+        <th>Company</th>
+    </tr>
+    {% for emp in employees %}
+    <tr>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.designation }}</td>
+        <td>{{ emp.salary }}</td>
+        <td>{{ emp.company.name }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No employees found</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
